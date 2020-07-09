@@ -255,7 +255,11 @@ languages.en = {
   /**
   * Warning when deleting a node
   */
-  button_delete_node_warning: 'Are you sure you want to remove this node?'
+  button_delete_node_warning: 'Are you sure you want to remove this node?',
+  /**
+  * When a string value does not match a regex
+  */
+  error_isRegex: 'Value must be a regex'
 }
 
 /* Default per-editor options */

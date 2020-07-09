@@ -226,10 +226,32 @@ export class Validator {
       /* `pattern` */
       pattern (schema, value, path) {
         if (!(new RegExp(schema.pattern)).test(value)) {
+          const errMsg = schema.patternErrMsg ? schema.patternErrMsg : ((schema.options && schema.options.patternmessage) ? schema.options.patternmessage : this.translate('error_pattern', [schema.pattern]))
           return [{
             path,
             property: 'pattern',
-            message: (schema.options && schema.options.patternmessage) ? schema.options.patternmessage : this.translate('error_pattern', [schema.pattern])
+            message: errMsg
+          }]
+        }
+        return []
+      },
+      /* `isRegex` */
+      isRegex (schema, value, path) {
+        let isReg = true
+        if (value !== null && value !== '') {
+          try {
+            new RegExp(value) // eslint-disable-line no-new
+          } catch (error) {
+            isReg = false
+          }
+        } else {
+          isReg = false
+        }
+        if (!isReg) {
+          return [{
+            path,
+            property: 'isRegex',
+            message: this.translate('error_isRegex', [])
           }]
         }
         return []
