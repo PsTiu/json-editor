@@ -235,7 +235,10 @@ export class Validator {
         }
         return []
       },
-      /* `isRegex` */
+      /*
+        `isRegex`
+        update by shitaopeng
+      */
       isRegex (schema, value, path) {
         let isReg = true
         if (value !== null && value !== '') {
